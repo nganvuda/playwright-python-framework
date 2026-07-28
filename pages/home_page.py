@@ -1,25 +1,20 @@
-from os import name
-
-from playwright.sync_api import Locator, Page
+from playwright.sync_api import Page
+from components.header_component import HeaderComponent
+from pages.login_page import LoginPage
 from utils.config import BASE_URL
+from pages.base_page import BasePage
 
 
-class HomePage:
+class HomePage(BasePage):
 
     def __init__(self, page: Page) -> None:
-        self.page = page
-        self.page_heading: Locator = page.get_by_role(
-            "link",
-            name="Sign in")
-        self.sign_in_link: Locator = page.get_by_role("link", name="Sign In")
+        super().__init__(page)
+        self.header = HeaderComponent(page)
 
     def open(self) -> None:
         self.page.goto(BASE_URL)
 
-    def go_to_login(self) -> None:
-        self.sign_in_link.click()
-
-    def get_title(self) -> str:
-        return self.page.title
-
+    def go_to_login(self) -> LoginPage:
+        self. header.click_sign_in()
+        return LoginPage(self.page)
 

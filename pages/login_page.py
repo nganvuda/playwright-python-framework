@@ -1,9 +1,9 @@
 from playwright.sync_api import Page, Locator, expect
+from pages.base_page import BasePage
 
-
-class LoginPage:
-    def __init__(self, page: Page) -> None:
-        self.page = page
+class LoginPage(BasePage):
+    def __init__(self, page: Page):
+        super().__init__(page)
 
         self.email_input: Locator = page.get_by_label("Email")
         self.password_input: Locator = page.locator('[data-test="password"]')
