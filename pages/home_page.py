@@ -28,9 +28,8 @@ class HomePage(BasePage):
 
     def select_product(self, name: str) -> ProductPage:
         logger.info(f"Selecting product {name}")
-        card = self.page.locator('[data-test="product-name"]').filter(has_text=re.compile(f"^{name}$"))
-        href = card.locator("xpath=ancestor::a").get_attribute("href")
-        self.page.goto(f"{BASE_URL.rstrip('/')}{href}")
+        title = self.page.locator('[data-test="product-name"]').filter(has_text=re.compile(f"^{name}$"))
+        title.click()
         return ProductPage(self.page)
 
     def search_product(self, term: str) -> None:
