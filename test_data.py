@@ -8,3 +8,4 @@ class User:
 
 INVALID_USER = User(email="wrongemail@example.com", password="wrongpassword")
 VALID_USER = User(email= TEST_EMAIL, password= TEST_PASSWORD)
+PRODUCT_NAME = "Pliers"
