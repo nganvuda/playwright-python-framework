@@ -19,6 +19,6 @@ class HeaderComponent:
     def should_show_logged_in_user(self) -> None:
         logger.info("User logged in")
         expect(self.account_menu).to_be_visible()
-    def should_show_card_count(self, count: str) -> None:
+    def should_show_cart_count(self, count: str) -> None:
         logger.info(f"Asserting card count is {count}")
         expect(self.cart_count).to_have_text(count)

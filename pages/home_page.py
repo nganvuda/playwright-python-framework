@@ -28,8 +28,8 @@ class HomePage(BasePage):
 
     def select_product(self, name: str) -> ProductPage:
         logger.info(f"Selecting product {name}")
-        title = self.page.locator('[data-test="product-name"]').filter(has_text=re.compile(f"^{name}$"))
-        title.click()
+        card = self.page.locator(f'[data-test="product-name"]:text-is("{name}")')
+        card.click()
         return ProductPage(self.page)
 
     def search_product(self, term: str) -> None:
