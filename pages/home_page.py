@@ -19,7 +19,7 @@ class HomePage(BasePage):
     def open(self) -> None:
         logger.info(f"Opening Home Page: {BASE_URL}")
         self.page.goto(BASE_URL)
-        self.page.wait_for_load_state("networkidle")
+        self.page.wait_for_load_state("domcontentloaded")
 
     def go_to_login(self) -> LoginPage:
         logger.info("Going to Login Page")

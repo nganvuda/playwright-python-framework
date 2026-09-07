@@ -18,6 +18,7 @@ class CheckoutPage(BasePage):
 
     def proceed_from_signin(self) -> None:
         logger.info("Proceeding from signin to billing address step")
+        expect(self.page.get_by_text("you are already logged in")).to_be_visible()
         self.proceed_from_signin_button.click()
 
     def should_be_on_billing_address_step(self) -> None:
