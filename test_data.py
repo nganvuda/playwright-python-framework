@@ -24,5 +24,5 @@ TEST_ADDRESS = Address(
     house_number="123",
     street="Main Street",
     city="Anytown",
-    state="California",
+    state="New South Wales",
 )

@@ -21,6 +21,8 @@ class CheckoutPage(BasePage):
         self.city_input: Locator = page.locator('[data-test="city"]')
         self.state_input: Locator = page.locator('[data-test="state"]')
         self.proceed_from_address_button: Locator = page.locator('[data-test="proceed-3"]')
+        self.payment_method_select: Locator = page.locator('[data-test="payment-method"]')
+        self.confirm_button: Locator = page.locator('[data-test="finish"]')
 
     def proceed_from_cart(self) -> None:
         logger.info("Proceeding from cart to sign in step")
@@ -47,3 +49,12 @@ class CheckoutPage(BasePage):
     def proceed_from_address(self) -> None:
         logger.info("Proceeding from billing address to payment step")
         self.proceed_from_address_button.click()
+
+    def complete_payment_with_cash_on_delivery(self) -> None:
+        logger.info("Completing payment with cash on-delivery step")
+        self.payment_method_select.select_option("cash-on-delivery")
+        self.confirm_button.click()
+
+    def should_show_payment_successfully(self) -> None:
+        logger.info("Asserting payment successfully")
+        expect(self.page.get_by_text("Payment was successful")).to_be_visible()
